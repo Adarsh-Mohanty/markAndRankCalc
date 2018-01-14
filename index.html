@@ -1,0 +1,103 @@
+
+<html>
+  <head>
+    <title>Student's mark calculator 
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <style>
+    	div{
+    		margin:8px 0px;
+    	}
+    	body{
+    		background: linear-gradient(316deg, #81b9f8, #cf8fee, #8feedd);
+			background-size: 600% 600%;
+			-webkit-animation: back 30s ease infinite;
+			-moz-animation: back 30s ease infinite;
+			animation: back 30s ease infinite;
+
+    	}
+    	@-webkit-keyframes back {
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+@-moz-keyframes back {
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+@keyframes back { 
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+#rankcalc{
+	position: fixed;
+	top:0;
+	right: 0;
+}
+    </style>
+  </head> 
+  <body >
+    <div class="container-fluid">
+      <div class="row text-center">
+      	<div class="col-md-12 col-sm-12">
+      		<h1 class="display-4">Enter marks of single student below to calculate</h1>
+      		<div class="row">
+      			<div class="col-md-6">Mark 1:</div>
+      			<div class="col-md-2"><input class="form-control mark" type="text" ></div>
+      		</div>
+      		<div id="append"></div>
+  		 	<a href="#" onclick="appendlist()" class="btn btn-primary">More+</a><br>
+  		 	<div class="row text-center">
+  		 		<div class="col-md-6 col-sm-6">Subjects : <input class="form-control" type="number" id="count" value="1"></div>
+  		 		<div class="col-md-6 col-sm-6">Total mark : <input class="form-control" type="number" id="tmark" value="100"></div>
+  		 	</div>
+  		 	
+  		 	<input type="button" class="btn btn-success" onclick="calculate()" value="Calculate">
+      	</div>
+        
+      </div>
+      <div class="row text-center">
+      	<div class="col-md-6 col-sm-6">Grand total : <div id="total"></div></div>
+      	<div class="col-md-6 col-sm-6">Percentage : <div id="percent"></div></div>
+      </div>
+      <div class="text-center " style="padding-top: 60px;"> <marquee class="display-6" style="    background: rgba(71, 71, 71, 0.19);    border-radius: 6px;">Student Mark and Rank calculator developed by Adarsh Mohanty</marquee></div>
+    </div>
+
+    <script>
+    	var subs=0;
+      function appendlist(){
+        var count=parseFloat(document.getElementById("count").value);
+        var tmark=parseFloat(document.getElementById("tmark").value);
+        count++;
+        tmark=(tmark+100);
+        $('#append').append('<div class="row"><div class="col-md-6">Mark '+count+':</div><div class="col-md-2"><input class="form-control mark"  type="text"></div></div>');
+        document.getElementById("count").value=count;
+        document.getElementById("tmark").value=tmark;
+        subs++;
+      }
+      function calculate(){
+      	var x=document.getElementsByClassName('mark');
+      	var sum=0;
+      	var per=0;
+
+      	for(var i=0;i<=subs;i++){
+      		sum+=parseFloat(x[i].value);
+
+      	}
+      	var total=parseFloat(document.getElementById('tmark').value);
+      	per=(sum/total)*100;
+      	$('#total').text(sum);
+      	$('#percent').text(per+"%");
+      }
+    </script>
+    
+	<a href="rank.html" class="btn btn-danger" id="rankcalc">Rank Calculator</a>
+
+  </body>
+</html>

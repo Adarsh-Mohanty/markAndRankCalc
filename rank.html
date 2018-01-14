@@ -1,0 +1,115 @@
+
+<html>
+  <head>
+    <title>Student's rank calculator 
+    </title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/list.js/1.5.0/list.min.js"></script>
+    <style>
+    	div{
+    		margin:8px 0px;
+    	}
+    	body{
+    		background: linear-gradient(316deg, #81b9f8, #cf8fee, #8feedd);
+			background-size: 600% 600%;
+			-webkit-animation: back 30s ease infinite;
+			-moz-animation: back 30s ease infinite;
+			animation: back 30s ease infinite;
+
+    	}
+    	@-webkit-keyframes back {
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+@-moz-keyframes back {
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+@keyframes back { 
+    0%{background-position:0% 2%}
+    50%{background-position:100% 99%}
+    100%{background-position:0% 2%}
+}
+.search{border-radius: 25px;
+    padding: 7px 14px;
+    background-color: transparent;
+    border: solid 1px rgba(0, 0, 0, 0.2);
+    width: 200px;
+    box-sizing: border-box;
+    color: #2e2e2e;
+    margin-bottom: 5px;}
+    #sortbtn{    font-size: 1.2rem;
+    padding: 5px 15px;
+    border-radius: 25px;
+    border: none;
+    display: inline-block;
+    color: #2e2e2e;
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.05);
+    margin: 2px 0;}
+    #rankcalc{
+  position: fixed;
+  top:0;
+  right: 0;
+}
+    </style>
+  </head> 
+  <body onload="hide()">
+    <div class="container-fluid">
+      <div class="row text-center">
+      	<div class="col-md-12 col-sm-12">
+      		<h1 class="display-4">Enter percentage of each student according to roll number</h1>
+      		<div class="row justify-content-center">
+      			<div class="col-md-2"><input class="form-control " id="roll" type="text"  value="Roll 1"></div>
+      			<div class="col-md-2"><input class="form-control " id="mark" type="text" placeholder="Percentage"></div>
+      		</div>
+    		  <input type="button" class="btn btn-primary" onclick="add()" value="Add">
+  		     <input type="button" class="btn btn-success" onclick="rankit()" value="Calculate rank">
+      	</div>
+        
+      </div>
+      <div class="row justify-content-center">
+        
+        <div id="users">
+          <input class="search" placeholder="Search" />
+          <button class="sort" data-order="desc" data-sort="mark" id="sortbtn" style="display:none;">
+            Sort by Percentage
+          </button>
+
+          <ul class="list list-group mx-auto" id="append"></ul>
+
+        </div>
+      	
+      </div>
+      <div class="text-center " style="padding-top: 60px;"> <marquee class="display-6" style="    background: rgba(71, 71, 71, 0.19);    border-radius: 6px;">Student Mark and Rank calculator developed by Adarsh Mohanty</marquee></div>
+    </div>
+
+    <script>
+      var roll=1;
+    	function add(){
+        var mark=parseFloat(document.getElementById('mark').value);
+        $('#append').append('<li class="list-group-item text-center"><h3 class="roll display-5">Roll '+roll+'</h3>-<h3 class="mark display-5">'+mark+'%</h3></li>');
+        roll++;
+        document.getElementById('mark').value='';
+        document.getElementById('roll').value='Roll '+roll;
+      }
+    </script>
+  
+    <script>
+      var options = {
+        valueNames: [ 'roll', 'mark' ]
+      };
+      function rankit(){
+         var userList = new List('users', options);
+         $('#sortbtn').css('display','inline');
+      }
+    </script>
+    <a href="index.html" class="btn btn-danger" id="rankcalc">Mark Calculator</a>
+  </body>
+</html>
